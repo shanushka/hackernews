@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import './assets/css/reset.css';
+import './assets/css/layout.css';
+
+import Home from './components/Home';
+import Comments from './components/Comments';
+import Story from './components/NewStory';
+
+/**
+ *  Main Component class.
+ *
+ * @class App
+ * @extends {Component}
+ */
 class App extends Component {
+  /**
+   *
+   *
+   * @returns {object}
+   * @memberof App
+   */
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Router>
+        <div className='App'>
+          <Route exact path='/' component= {Home} />
+          <Route path='/newStory' component= {Story}/>
+          <Route path='/comments' component= {Comments}/>
+        </div>
+      </Router>
     );
   }
 }

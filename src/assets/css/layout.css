@@ -1,0 +1,68 @@
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.logo {
+  background-color: #395697;
+  line-height: 46px;
+}
+.logo a{
+  color: white;
+
+}
+
+.tabs {
+  border-bottom: 1px solid grey;
+  width: 100%;
+  margin:0 auto;
+}
+
+
+.tabs li {
+  float: left;
+  padding: 4px 4px;
+  display: block;
+}
+
+.clearfix {
+  overflow: hidden;
+  content: '';
+}
+
+.stories li{
+  line-height: 35px;
+  width:95%;
+  font-family:Arial, Helvetica, sans-serif;
+  padding: 0 2px;
+  margin:6px auto;
+  box-shadow: 1px 2px grey;
+  border:1px solid grey;
+}
+
+@media only screen and (min-width: 1100px) {
+  .tabs h1 {
+    background-color: #395697;
+    color: white;
+    line-height: 66px;
+  }
+  .wrapper{
+    width:95%;
+    margin:0 auto;
+  }
+  .stories li{
+    line-height: 50px;
+    padding: 0 8px;
+    margin:10px auto;
+
+  }
+  .tabs li {
+    padding:8px 20px 8px 0;
+  }
+
+}
+
