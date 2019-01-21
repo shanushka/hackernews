@@ -1,19 +1,32 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Tab from './Tab';
+import WithFetchData from '../hoc/WithFetchData';
 
-class NewStory extends React.Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
-
-  render() {
-    return (
+const NewStory = (props) => {
+  const listItems = props.stories.map(story => (
+    <li className='storylist' key={story.id}>
+      <a href={story.url}>{story.title}</a>
       <div>
-      <Tab></Tab>
+        <span> {story.points} points | </span>
+        <span>by {story.by} | </span>
+        <span>approximately {story.time} | </span>
+        <Link to='/comments'>
+          <span className='comments'>
+            comments ({story.commentIdArray ? story.commentIdArray.length : 0})
+          </span>
+        </Link>
       </div>
-    );
-  }
-}
+    </li>
+  ));
 
-export default (NewStory);
+  return (
+    <div>
+      <Tab />
+      <div className='stories'>{listItems}</div>
+    </div>
+  );
+};
+
+export default WithFetchData('newstories')(NewStory);

@@ -18,12 +18,12 @@ class Tab extends React.Component {
           <Link to='/'><h1>HackerNews</h1></Link>
         </div>
       </div>
-      <div class="wrapper">
+      <div className="wrapper">
       <ul>
         <li><Link to='/newStory'>New Stories</Link></li>
         <li><Link to='/comments'>Comments</Link></li>
-        <li><Link to='/job'>Job</Link></li>        
-        <li><Link to='/job'>Ask</Link></li>        
+        <li><Link to='/jobStory'>Job</Link></li>        
+        <li><Link to='/askStory'>Ask</Link></li>        
         </ul>
         </div>
       </div>

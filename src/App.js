@@ -5,8 +5,10 @@ import './assets/css/reset.css';
 import './assets/css/layout.css';
 
 import Home from './components/Home';
+import AskStory from './components/AskStory'; 
+import JobStory from './components/JobStory';
+import NewStory from './components/NewStory';
 import Comments from './components/Comments';
-import Story from './components/NewStory';
 
 /**
  *  Main Component class.
@@ -23,13 +25,13 @@ class App extends Component {
    */
   render() {
     return (
-      <Router>
         <div className='App'>
-          <Route exact path='/' component= {Home} />
-          <Route path='/newStory' component= {Story}/>
+          <Route exact path='/' component= {Home}  />
+          <Route path ='/askStory' component ={AskStory} />
+          <Route path='/newStory' component= {NewStory}/>
+          <Route path='/jobStory' component= {JobStory}/>
           <Route path='/comments' component= {Comments}/>
         </div>
-      </Router>
     );
   }
 }

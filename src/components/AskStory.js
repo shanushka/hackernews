@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Tab from './Tab';
 import WithFetchData from '../hoc/WithFetchData';
 
-const Home = props => {
+const Job = props => {
   const listItems = props.stories.map(story => (
     <li className='storylist' key={story.id}>
       <a href={story.url}>{story.title}</a>
@@ -29,4 +29,4 @@ const Home = props => {
   );
 };
 
-export default WithFetchData('topstories')(Home);
+export default WithFetchData('askstories')(Job);
