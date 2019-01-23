@@ -12,7 +12,7 @@ const Home = props => {
         <span> {story.points} points | </span>
         <span>by {story.by} | </span>
         <span>approximately {story.time} | </span>
-        <Link to='/comments'>
+        <Link to={{ pathname: `item/${story.id}`, state: { story: story } }}>
           <span className='comments'>
             comments ({story.commentIdArray ? story.commentIdArray.length : 0})
           </span>
@@ -20,6 +20,15 @@ const Home = props => {
       </div>
     </li>
   ));
+
+  if (props.isLoading) {
+    return (
+      <div>
+        <Tab />
+        <p>Loading</p>
+      </div>
+    );
+  }
 
   return (
     <div>

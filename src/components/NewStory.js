@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Tab from './Tab';
 import WithFetchData from '../hoc/WithFetchData';
 
-const NewStory = (props) => {
+const NewStory = props => {
   const listItems = props.stories.map(story => (
     <li className='storylist' key={story.id}>
       <a href={story.url}>{story.title}</a>
@@ -20,6 +20,15 @@ const NewStory = (props) => {
       </div>
     </li>
   ));
+  
+  if (props.isLoading) {
+    return (
+      <div>
+        <Tab />
+        <p>Loading</p>
+      </div>
+    );
+  }
 
   return (
     <div>

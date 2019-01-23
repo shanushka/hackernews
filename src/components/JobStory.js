@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Tab from './Tab';
 import WithFetchData from '../hoc/WithFetchData';
 
-const Job =(props) => {
+const Job = props => {
   const listItems = props.stories.map(story => (
     <li className='storylist' key={story.id}>
       <a href={story.url}>{story.title}</a>
@@ -20,13 +20,22 @@ const Job =(props) => {
       </div>
     </li>
   ));
-
+  
+  if (props.isLoading) {
     return (
       <div>
         <Tab />
-        <div className='stories'>{listItems}</div>
+        <p>Loading</p>
       </div>
     );
-}
+  }
+
+  return (
+    <div>
+      <Tab />
+      <div className='stories'>{listItems}</div>
+    </div>
+  );
+};
 
 export default WithFetchData('jobstories')(Job);

@@ -20,6 +20,15 @@ const Job = props => {
       </div>
     </li>
   ));
+  
+  if (props.isLoading) {
+    return (
+      <div>
+        <Tab />
+        <p>Loading</p>
+      </div>
+    );
+  }
 
   return (
     <div>
