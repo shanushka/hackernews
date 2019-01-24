@@ -34,26 +34,25 @@ class SingleComment extends React.Component {
         commentIdArray: data.kids,
         time: getTimeDifference(data.time)
       });
-    });
+    })
+    .catch(err => {return err})
   }
 
   render() {
     return (
-      <div className='singlecomment' key={this.state.id} id={this.state.id}>
-        <li>
+       <div className='singlecomment'>
           <div className='user'>
             <span className='userName'>{this.state.by} | </span>
             <span className='timecomment'>{this.state.time}</span>
           </div>
           <div dangerouslySetInnerHTML={{ __html: this.state.text }} />
-          <div class='replies'>Replies</div>
+          <div className='replies'>Replies</div>
           {this.state.commentIdArray ? (
             <CommentLists commentIdArray={this.state.commentIdArray} />
           ) : (
             ''
           )}
-        </li>
-      </div>
+        </div>
     );
   }
 }

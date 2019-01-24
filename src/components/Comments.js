@@ -8,7 +8,6 @@ class Comments extends React.Component {
     return (
       <div>
         <Tab />
-        <div>
           <div className='comments-overlay clearfix'>
             <div className='title'>{this.props.location.state.story.title}</div>
             <div className='commentlists'>
@@ -17,7 +16,6 @@ class Comments extends React.Component {
                 commentIdArray={this.props.location.state.story.commentIdArray}
               />
             </div>
-          </div>
         </div>
       </div>
     );

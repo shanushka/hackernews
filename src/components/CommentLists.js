@@ -4,7 +4,9 @@ import SingleComment from './SingleComment';
 
 class CommentLists extends React.Component {
   render() {
-    return this.props.commentIdArray.map(id => <SingleComment id={id} />);
+    return( <ul>{this.props.commentIdArray
+      .map(id => <li key={id}><SingleComment id={id} /></li>)
+  }</ul>);
   }
 }
 

@@ -3,7 +3,10 @@ const getCommentsByApi = id => {
   return axios
     .get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
     .then(res => {
-      return res.data
+      return res.data;
+    })
+    .catch(error => {
+      return error;
     });
 };
 

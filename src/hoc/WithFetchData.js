@@ -11,43 +11,50 @@ const WithFetchData = story => WrappedComponent => {
 
       this.state = {
         stories: [],
-        isLoading: false
+        isLoading: false,
+        isMounted: false
       };
     }
 
     componentDidMount() {
-      this.mounted = true;
-
       this.getDataFromApi();
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true, isMounted: true });
     }
 
     componentWillUnmount() {
-      this.mounted = false;
+      this.setState({ isMounted: false });
     }
 
     getDataFromApi = () => {
       axios.get(`${URL_BASE}${story}.json`).then(res => {
         res.data.forEach(result => {
-          axios.get(`${URL_ITEM}${result}.json`).then(response => {
-            const newstory = {
-              id: response.data.id,
-              by: response.data.by,
-              type: response.data.type,
-              title: response.data.title,
-              url: response.data.url,
-              points: response.data.score,
-              commentIdArray: response.data.kids,
-              time: getTimeDifference(response.data.time)
-            };
-            if (this.mounted) {
-              this.setState({
-                stories: [...this.state.stories, newstory],
-                isLoading: false
-              });
-            }
-          });
+          axios
+            .get(`${URL_ITEM}${result}.json`)
+            .then(response => {
+              const newstory = {
+                id: response.data.id,
+                by: response.data.by,
+                type: response.data.type,
+                title: response.data.title,
+                url: response.data.url,
+                points: response.data.score,
+                commentIdArray: response.data.kids,
+                time: getTimeDifference(response.data.time)
+              };
+              if (this.state.isMounted) {
+                this.setState({
+                  stories: [...this.state.stories, newstory],
+                  isLoading: false
+                });
+              }
+            })
+            .catch(error => {
+              return error;
+            });
         });
+      })
+      .catch(error => {
+        return error;
       });
     };
 
