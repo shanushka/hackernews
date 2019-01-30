@@ -1,17 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
-import { URL_BASE, URL_ITEM } from '../constants/Common';
+import { URL_BASE, URL_ITEM, NEWS_PER_PAGE } from '../constants/Common';
 import { getTimeDifference } from '../utils/getTimeDifference';
 
 const WithFetchData = story => WrappedComponent => {
   return class DataFetch extends React.Component {
-    constructor() {
+      constructor() {
       super();
 
       this.state = {
         stories: [],
         isLoading: false,
+        currentPage: 1,
+        noOfMaxPage:'',
         isMounted: false
       };
     }
@@ -26,10 +28,15 @@ const WithFetchData = story => WrappedComponent => {
     }
 
     getDataFromApi = () => {
-      axios.get(`${URL_BASE}${story}.json`).then(res => {
-        res.data.forEach(result => {
+      const indexOfLastNews = this.state.currentPage * NEWS_PER_PAGE;
+      const indexOfFirstNews = indexOfLastNews - NEWS_PER_PAGE;
+      axios.get(`${URL_BASE}${story}.json`).then(res => {      
+        this.setState({
+          noOfMaxPage:Math.ceil(res.data.length/NEWS_PER_PAGE)
+        })
+        for (let i = indexOfFirstNews; i < indexOfLastNews ; i++) {
           axios
-            .get(`${URL_ITEM}${result}.json`)
+            .get(`${URL_ITEM}${res.data[i]}.json`)
             .then(response => {
               const newstory = {
                 id: response.data.id,
@@ -51,20 +58,46 @@ const WithFetchData = story => WrappedComponent => {
             .catch(error => {
               return error;
             });
-        });
-      })
-      .catch(error => {
-        return error;
+        }
       });
+    };
+
+    onPreviousClick = () => {
+      this.setState(
+        {
+          stories: [],
+          currentPage: this.state.currentPage - 1
+        },
+        () => {
+          this.getDataFromApi();
+        }
+      );
+    };
+
+    onNextClick = () => {
+      this.setState(
+        {
+          stories: [],
+          currentPage: this.state.currentPage + 1
+        },
+        () => {
+          this.getDataFromApi();
+        }
+      );
     };
 
     render() {
       return (
-        <WrappedComponent
-          stories={this.state.stories}
-          getDataFromApi={this.getDataFromApi}
-          isLoading={this.state.isLoading}
-        />
+         
+          <WrappedComponent
+            onPreviousClick = { this.onPreviousClick}
+            onNextClick = { this.onNextClick}
+            nextPage = {this.state.noOfMaxPage}
+            currentPage ={this.state.currentPage}
+            stories={this.state.stories}
+            getDataFromApi={this.getDataFromApi}
+            isLoading={this.state.isLoading}
+          />
       );
     }
   };

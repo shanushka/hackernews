@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-import Tab from './Tab';
+import Tab from '../components/Tab';
 import WithFetchData from '../hoc/WithFetchData';
 
-const Home = props => {
+const Home = withRouter(({ history, ...props }) => {
   const listItems = props.stories.map(story => (
     <li className='storylist' key={story.id}>
       <a href={story.url}>{story.title}</a>
@@ -22,20 +22,32 @@ const Home = props => {
   ));
 
   if (props.isLoading) {
-    return (
-      <div>
-        <Tab />
-        <p>Loading</p>
-      </div>
-    );
+    return <p>Loading</p>;
   }
 
   return (
     <div>
-      <Tab />
+      <Tab/>
+      <div className='button_container clearfix'>
+        <div className='button_right'>
+          <button
+            onClick={props.onPreviousClick}
+            disabled={props.currentPage === 1}
+          >
+            &laquo; Prev
+          </button>
+          <span>{props.currentPage}</span>
+          <button
+            onClick={props.onNextClick}
+            disabled={props.currentPage === props.noOfMaxPage}
+          >
+            Next &raquo;
+          </button>
+        </div>
+      </div>
       <div className='stories'>{listItems}</div>
     </div>
   );
-};
+});
 
 export default WithFetchData('topstories')(Home);
