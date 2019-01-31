@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 class Login extends React.Component {
-
   constructor() {
     super();
     this.state = {
@@ -22,16 +21,16 @@ class Login extends React.Component {
         data.username === this.state.username &&
         data.password === this.state.password
       ) {
-        alert('Logged in')
+        alert('Logged in');
         window.localStorage.setItem('currentUser', JSON.stringify(data));
-        this.props.history.push({pathname:'/', state:data.username});
+        this.props.history.push({ pathname: '/', state: data.username });
       }
     });
   };
 
   handleChange = evt => {
     const { name, value } = evt.target;
-   
+
     switch (name) {
       case 'username':
         this.setState({
@@ -48,10 +47,18 @@ class Login extends React.Component {
     }
   };
 
+  handleClick = () =>{
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+      <div class ="title-bar clearfix">
+        <button type='button' onClick= {this.handleClick} className='cancelbtn' />
+      </div>
         <div className='login-container'>
+          <h2>Login</h2>
           <label htmlFor='uname'>
             <b>Username</b>
           </label>
@@ -77,17 +84,12 @@ class Login extends React.Component {
           <button type='submit' className='login-btn'>
             Login
           </button>
-          <label>Remember me</label>
+          <label className='remember'>Remember me</label>
           <input type='checkbox' name='remember' />
-          <div>
+          <div class='register-row'>
             <span>Don't Have an account</span>
             <Link to='/register'>Register</Link>
           </div>
-        </div>
-        <div className='login-container'>
-          <button type='button' className='cancelbtn'>
-            Cancel
-          </button>
         </div>
       </form>
     );

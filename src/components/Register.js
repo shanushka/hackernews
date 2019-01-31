@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-
 const Initialstate = {
   name: '',
   email: '',
@@ -36,37 +35,35 @@ class Register extends React.Component {
     };
   }
 
-  
   handleValidation = () => {
-
     let nameError = '';
     let emailError = '';
     let userNameError = '';
     let passwordError = '';
-    let confirmPassword ='';
+    let confirmPassword = '';
 
     const userData = JSON.parse(window.localStorage.getItem('userData'));
 
     userData.forEach(data => {
-      if(this.state.username === data.username){
+      if (this.state.username === data.username) {
         userNameError = 'Username already exists';
-      } 
-      if(this.state.email === data.email){
+      }
+      if (this.state.email === data.email) {
         emailError = 'Email already exists';
-      } 
-    })
-    
+      }
+    });
+
     if (!this.state.name) {
       nameError = 'Please enter your name';
     }
-    if (this.state.name.length <  3) {
+    if (this.state.name.length < 3) {
       nameError = 'Minimum character of 3 required';
     }
-    if(!this.state.password){
+    if (!this.state.password) {
       passwordError = 'Enter password';
     }
-    if(!this.state.confirmPassword){
-      confirmPassword = 'Enter Confirm password'
+    if (!this.state.confirmPassword) {
+      confirmPassword = 'Enter Confirm password';
     }
     if (!this.state.email.includes('@')) {
       emailError = 'Invalid email';
@@ -74,17 +71,23 @@ class Register extends React.Component {
     if (!this.state.username) {
       userNameError = 'Enter a username';
     }
-    if(this.state.password !== this.state.confirmPassword){
+    if (this.state.password !== this.state.confirmPassword) {
       confirmPassword = 'Did not match password';
     }
-    if (nameError || emailError || userNameError || confirmPassword || passwordError) {
+    if (
+      nameError ||
+      emailError ||
+      userNameError ||
+      confirmPassword ||
+      passwordError
+    ) {
       this.setState({
         formErrors: {
           name: nameError,
           email: emailError,
           username: userNameError,
-          password:passwordError,
-          confirmPassword:confirmPassword
+          password: passwordError,
+          confirmPassword: confirmPassword
         }
       });
       return false;
@@ -97,11 +100,16 @@ class Register extends React.Component {
     evt.preventDefault();
     const isValid = this.handleValidation();
     if (isValid) {
-      user.push({'name':this.state.name,'email':this.state.email,'username':this.state.username,'password':this.state.password})
+      user.push({
+        name: this.state.name,
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password
+      });
       window.localStorage.setItem('userData', JSON.stringify(user));
       this.props.history.push('/login');
     }
-   };
+  };
 
   handleChange = evt => {
     evt.preventDefault();
@@ -136,11 +144,18 @@ class Register extends React.Component {
         break;
     }
   };
+  handleClick = () =>{
+    this.props.history.push('/');
+  }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} noValidate>
+        <div class='title-bar clearfix'>
+          <button type='button' onClick= {this.handleClick} className='cancelbtn' />
+        </div>
         <div className='login-container'>
+          <h2>Register</h2>
           <label htmlFor='name'>
             <b>Your Name *</b>
           </label>
@@ -152,7 +167,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             noValidate
           />
-          <div className = "required">{this.state.formErrors.name}</div>
+          <div className='required'>{this.state.formErrors.name}</div>
           <label htmlFor='email'>
             <b>Your Email *</b>
           </label>
@@ -164,7 +179,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             noValidate
           />
-          <div className = "required">{this.state.formErrors.email}</div>
+          <div className='required'>{this.state.formErrors.email}</div>
           <label htmlFor='uname'>
             <b>Username *</b>
           </label>
@@ -176,7 +191,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             noValidate
           />
-          <div className = "required">{this.state.formErrors.username}</div>
+          <div className='required'>{this.state.formErrors.username}</div>
           <label htmlFor='psw'>
             <b>Password *</b>
           </label>
@@ -188,7 +203,7 @@ class Register extends React.Component {
             onChange={this.handleChange}
             noValidate
           />
-          <div className = "required">{this.state.formErrors.password}</div>
+          <div className='required'>{this.state.formErrors.password}</div>
           <label htmlFor='cpsw'>
             <b>Confirm Password *</b>
           </label>
@@ -200,13 +215,15 @@ class Register extends React.Component {
             onChange={this.handleChange}
             noValidate
           />
-          <div className = "required">{this.state.formErrors.confirmPassword}</div>
+          <div className='required'>
+            {this.state.formErrors.confirmPassword}
+          </div>
           <button type='submit' className='login-btn'>
             Register
           </button>
-        </div>
-        <div className='login-container'>
-          <Link to='/login'>Login</Link>
+          <div className='login-bottom'>
+            <Link to='/login'>Login</Link>
+          </div>
         </div>
       </form>
     );
