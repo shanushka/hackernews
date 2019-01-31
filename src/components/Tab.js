@@ -15,20 +15,49 @@ class Tab extends React.Component {
 
     this.state = {
       active: 'Home',
-      userName:''
+      userName: ''
     };
   }
-  
-  componentDidMount(){
-    const currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
+
+  componentDidMount() {
+    const currentUser = JSON.parse(window.localStorage.getItem('currentUser'))
     this.setState({
-        userName:currentUser.username
-    })
+      userName: currentUser.username
+    });
+  }
+
+ dropDown = () => {
+    document.getElementById("myDropdown").classList.toggle("show");
+  }
+    
+  // window.onClick = function(event) {
+  //   if (!event.target.matches('.dropbtn')) {
+  //     var dropdowns = document.getElementsByClassName("dropdown-content");
+  //     var i;
+  //     for (i = 0; i < dropdowns.length; i++) {
+  //       var openDropdown = dropdowns[i];
+  //       if (openDropdown.classList.contains('show')) {
+  //         openDropdown.classList.remove('show');
+  //       }
+  //     }
+  //   }
+  // }
+  onLogOut = () =>{
+    this.setState({
+      userName: ''
+    });
+    window.localStorage.setItem('currentUser',JSON.stringify(this.state.userName))
   }
   
   render() {
     const login = this.state.userName ? (
-      <p>{this.state.userName}</p>
+      <div className='dropdown'>
+        <span className='dropbtn' onClick={this.dropDown}>{this.state.userName}</span>
+        <div id='myDropdown' className='dropdown-content'>
+          <span onClick ={this.onLogOut}>Log Out</span>
+          <a href='#'>Bookmarks</a>
+        </div>
+      </div>
     ) : (
       <Link to={LOGIN}>Login</Link>
     );

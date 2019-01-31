@@ -87,8 +87,7 @@ const WithFetchData = story => WrappedComponent => {
     };
 
     render() {
-      return (
-         
+      return (    
           <WrappedComponent
             onPreviousClick = { this.onPreviousClick}
             onNextClick = { this.onNextClick}

@@ -45,6 +45,17 @@ class Register extends React.Component {
     let passwordError = '';
     let confirmPassword ='';
 
+    const userData = JSON.parse(window.localStorage.getItem('userData'));
+
+    userData.forEach(data => {
+      if(this.state.username === data.username){
+        userNameError = 'Username already exists';
+      } 
+      if(this.state.email === data.email){
+        emailError = 'Email already exists';
+      } 
+    })
+    
     if (!this.state.name) {
       nameError = 'Please enter your name';
     }
