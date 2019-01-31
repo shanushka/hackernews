@@ -20,19 +20,31 @@ const Job = props => {
       </div>
     </li>
   ));
-  
+
   if (props.isLoading) {
-    return (
-      <div>
-        <Tab />
-        <p>Loading</p>
-      </div>
-    );
+    return <p>Loading</p>;
   }
 
   return (
     <div>
-      <Tab />
+    <Tab userName = ''/>
+    <div className='button_container clearfix'>
+        <div className='button_right'>
+          <button
+            onClick={props.onPreviousClick}
+            disabled={props.currentPage === 1}
+          >
+            &laquo; Prev
+          </button>
+          <span>{props.currentPage}</span>
+          <button
+            onClick={props.onNextClick}
+            disabled={props.currentPage === props.noOfMaxPage}
+          >
+            Next &raquo;
+          </button>
+        </div>
+      </div>
       <div className='stories'>{listItems}</div>
     </div>
   );

@@ -15,8 +15,10 @@ a {
   background-color: #395697;
   line-height: 46px;
 }
+
 .logo a {
   color: white;
+  font-family: serif;
 }
 
 .tabs {
@@ -29,6 +31,10 @@ a {
   float: left;
   padding: 4px 4px;
   display: block;
+}
+
+.login {
+  display: none;
 }
 
 .clearfix {
@@ -55,6 +61,7 @@ a {
 .storylist a:hover {
   text-decoration: underline;
 }
+
 .comments:hover {
   text-decoration: underline;
 }
@@ -67,8 +74,8 @@ a {
   background: white;
   border: 1px solid #efefef;
 }
-.singlecomment{
-  margin:0 0 0 10px ;
+.singlecomment {
+  margin: 0 0 0 10px;
 }
 
 .comments-overlay {
@@ -92,24 +99,28 @@ a {
   font-weight: bold;
 }
 
-.user{
-  padding:8px 0;
+.user {
+  padding: 8px 0;
 }
+
 .userName {
-  font-size:12px;
+  font-size: 12px;
   font-weight: bold;
-  color:#395697;
+  color: #395697;
 }
-.replies{
-  color:#395697;
-  padding:8px 0;
-  font-size:12px;
-  font-weight:bold;
+
+.replies {
+  color: #395697;
+  padding: 8px 0;
+  font-size: 12px;
+  font-weight: bold;
 }
+
 .timecomment {
   color: rgb(255, 102, 0);
-  font-size:10px;
+  font-size: 10px;
 }
+
 .comments-overlay li {
   font-size: 12px;
   margin: 10px 0;
@@ -117,16 +128,228 @@ a {
   padding: 10px 20px;
 }
 
-@media only screen and (min-width: 1100px) {
+.button_container {
+  width: 95%;
+  padding: 4px 8px;
+  margin: 0 auto;
+}
+
+.button_right {
+  width: 50%;
+  float: right;
+  text-align: right;
+}
+
+.button_right button {
+  border: none;
+  font-weight: bold;
+  background-color: #4caf50;
+  color: white;
+  padding: 0 8px;
+  line-height: 20px;
+}
+
+.button_right button:hover {
+  opacity: 0.7;
+}
+
+.button_right button:disabled {
+  background-color: #f1f1f1;
+  opacity: 1;
+  color: black;
+}
+
+.button_right span {
+  display: inline-block;
+  font-size: 14px;
+  padding: 0 4px;
+}
+
+form {
+  width: 500px;
+  margin: 8px auto;
+  border: 3px solid #f1f1f1;
+}
+
+/* Full-width inputs */
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+.login-btn {
+  background-color: #395697;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.register-row a {
+  color: #395697;
+  font-size: 16px;
+  padding: 0 4px;
+}
+.register-row {
+  padding: 4px 0;
+  font-size: 12px;
+}
+
+.remember {
+  font-size: 14px;
+}
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+  background: url('../images/cross.png');
+  width: 15px;
+  border:none;
+  height: 15px;
+  float:right;
+  background-size: cover;
+}
+.title-bar{
+  width:100%;
+  background-color: #f1f1f1;
+}
+
+.login-container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+.pagenotfound {
+  background: url(../images/PageNotFound.jpg) no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 80%;
+  margin: 20px auto;
+}
+
+.pagenotfound button {
+  border: none;
+  margin: 20% 20%;
+  line-height: 50px;
+  width: 100px;
+}
+
+.required {
+  font-size: 10px;
+  color: red;
+  padding: 8px 0;
+}
+
+.login-bottom {
+  width: 100px;
+  margin: 0 auto;
+  padding: 8px 0px;
+  text-align: center;
+}
+
+.login-bottom a {
+  color: #395697;
+  cursor: pointer;
+}
+
+.login-bottom a:hover {
+  opacity: 0.7;
+}
+
+h2 {
+  color: #395697;
+  padding: 8px 0;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1000px) {
+  body {
+    position: relative;
+  }
+
+  .wrapper {
+    width: 95%;
+    margin: 0 auto;
+  }
+
+  .login {
+    float: right;
+    display: block;
+    padding: 8px 20px 8px 0;
+  }
+
+  .dropbtn {
+    background-color: rgb(184, 197, 206);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Dropdown button on hover & focus */
+  .dropbtn:hover,
+  .dropbtn:focus {
+    background-color: #2980b9;
+  }
+
+  /* The container <div> - needed to position the dropdown content */
+  .dropdown {
+    display: inline-block;
+  }
+
+  /* Dropdown Content (Hidden by Default) */
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    right: 20px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a,
+  .dropdown-content span {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .show {
+    display: block;
+  }
+  .button_container {
+    padding: 8px 8px;
+  }
+
   .tabs h1 {
     background-color: #395697;
     color: white;
     line-height: 66px;
   }
-  .wrapper {
-    width: 95%;
-    margin: 0 auto;
-  }
+
   .stories li {
     padding: 0 8px;
     margin: 10px auto;
