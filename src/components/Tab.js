@@ -6,7 +6,8 @@ import {
   API_JOBSTORY,
   API_ROOT,
   API_NEWSTORY,
-  LOGIN
+  LOGIN,
+  BOOKMARKS
 } from '../constants/Common';
 
 class Tab extends React.Component {
@@ -30,18 +31,6 @@ class Tab extends React.Component {
     document.getElementById("myDropdown").classList.toggle("show");
   }
     
-  // window.onClick = function(event) {
-  //   if (!event.target.matches('.dropbtn')) {
-  //     var dropdowns = document.getElementsByClassName("dropdown-content");
-  //     var i;
-  //     for (i = 0; i < dropdowns.length; i++) {
-  //       var openDropdown = dropdowns[i];
-  //       if (openDropdown.classList.contains('show')) {
-  //         openDropdown.classList.remove('show');
-  //       }
-  //     }
-  //   }
-  // }
   onLogOut = () =>{
     this.setState({
       userName: ''
@@ -55,7 +44,7 @@ class Tab extends React.Component {
         <span className='dropbtn' onClick={this.dropDown}>{this.state.userName}</span>
         <div id='myDropdown' className='dropdown-content'>
           <span onClick ={this.onLogOut}>Log Out</span>
-          <a href='#'>Bookmarks</a>
+          <Link to = {BOOKMARKS}>Bookmarks</Link>
         </div>
       </div>
     ) : (
