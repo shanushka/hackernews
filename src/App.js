@@ -39,7 +39,7 @@ class App extends Component {
    */
   render() {
     return (
-      <Router>
+      <Router basename = 'hackernews'>
         <div className='App'>
           <Switch>
             <Route exact path={API_ROOT} component={Home} />

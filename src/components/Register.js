@@ -44,7 +44,7 @@ class Register extends React.Component {
 
     const userData = JSON.parse(window.localStorage.getItem('userData'));
 
-    userData.forEach(data => {
+    userData && userData.forEach(data => {
       if (this.state.username === data.username) {
         userNameError = 'Username already exists';
       }

@@ -21,30 +21,37 @@ class Tab extends React.Component {
   }
 
   componentDidMount() {
-    const currentUser = JSON.parse(window.localStorage.getItem('currentUser'))
-    this.setState({
-      userName: currentUser.username
-    });
+    const currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
+    if (currentUser) {
+      this.setState({
+        userName: currentUser.username
+      });
+    }
   }
 
- dropDown = () => {
-    document.getElementById("myDropdown").classList.toggle("show");
-  }
-    
-  onLogOut = () =>{
+  dropDown = () => {
+    document.getElementById('myDropdown').classList.toggle('show');
+  };
+
+  onLogOut = () => {
     this.setState({
       userName: ''
     });
-    window.localStorage.setItem('currentUser',JSON.stringify(this.state.userName))
-  }
-  
+    window.localStorage.setItem(
+      'currentUser',
+      JSON.stringify(this.state.userName)
+    );
+  };
+
   render() {
     const login = this.state.userName ? (
       <div className='dropdown'>
-        <span className='dropbtn' onClick={this.dropDown}>{this.state.userName}</span>
+        <span className='dropbtn' onClick={this.dropDown}>
+          {this.state.userName}
+        </span>
         <div id='myDropdown' className='dropdown-content'>
-          <span onClick ={this.onLogOut}>Log Out</span>
-          <Link to = {BOOKMARKS}>Bookmarks</Link>
+          <span onClick={this.onLogOut}>Log Out</span>
+          <Link to={BOOKMARKS}>Bookmarks</Link>
         </div>
       </div>
     ) : (
